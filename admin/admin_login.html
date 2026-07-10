@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BBQ Bites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-color: var(--eye-boall);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1.5rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--Pure-white);
+            border-radius: 1.5rem;
+            padding: 3rem 2.5rem;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 30px;
+            border: 1px solid rgba(242, 189, 18, 0.15);
+            text-align: center;
+        }
+
+        .login-logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--gold-finger);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .login-subtitle {
+            color: gray;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 0.75rem;
+            border: 1px solid #ddd;
+            font-size: 1.1rem;
+            background-color: var(--eye-boall);
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold-finger);
+            background-color: var(--Pure-white);
+            box-shadow: 0 0 0 3px var(--hint-yellow);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            font-size: 1.15rem;
+            font-weight: bold;
+            background-color: var(--gold-finger);
+            color: var(--Pure-white);
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .login-btn:hover {
+            background-color: var(--lead--);
+        }
+
+        /* Error Message Banner */
+        .error-message {
+            background-color: #fde8e7;
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: gray;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--gold-finger);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <a href="../index.html" class="login-logo">BBQ Bites</a>
+        <div class="login-subtitle">Admin Control Panel Login</div>
+
+        <div id="error-banner" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span id="error-text">Invalid username or password</span>
+        </div>
+
+        <form id="admin-login-form">
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username" placeholder="Username" required autocomplete="username" />
+            </div>
+
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required autocomplete="current-password" />
+            </div>
+
+            <button type="submit" class="login-btn">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+            </button>
+        </form>
+
+        <a href="../index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Back to BBQ Bites
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorBanner = document.getElementById('error-banner');
+            const errorText = document.getElementById('error-text');
+
+            // Reset UI states
+            errorBanner.style.display = 'none';
+
+            fetch('/api/admin/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: usernameInput.value,
+                    password: passwordInput.value
+                })
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return res.json().then(errData => {
+                        throw new Error(errData.error || 'Login failed');
+                    });
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    // Refresh current page to load admin.html dashboard
+                    window.location.reload();
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                errorText.textContent = err.message;
+                errorBanner.style.display = 'flex';
+                // Clear password input
+                passwordInput.value = '';
+                passwordInput.focus();
+            });
+        });
+    </script>
+</body>
+</html>

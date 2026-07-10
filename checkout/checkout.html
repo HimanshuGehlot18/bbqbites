@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - BBQ Bites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="../index.html" class="Logo">BBQ Bites</a>
+            <div class="desktop-action">
+                <a href="../index.html" class="btn">
+                    <i class="fa-solid fa-house"></i>
+                    Back to Home
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="wrapper p-top">
+            <div class="checkout-container">
+                <div class="order-summary">
+                    <h2>Your Order</h2>
+                    <div class="summary-items">
+                        <!-- Order items will be injected here by checkout.js -->
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span class="total-price">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="payment-details">
+                    <form id="payment-form">
+                        <h2>Delivery Details</h2>
+                        <div class="checkout-form-group">
+                            <input type="text" id="customer-name" placeholder="Full Name" required autocomplete="name" />
+                            <input type="tel" id="customer-phone" placeholder="Phone Number (10 digits)" required pattern="[0-9]{10}" title="Ten digit phone number" autocomplete="tel" />
+                            <textarea id="customer-address" placeholder="Delivery Address" rows="3" required autocomplete="street-address"></textarea>
+                        </div>
+
+                        <h2>Payment Method</h2>
+                        <div class="payment-option">
+                            <input type="radio" id="credit-card" name="payment" value="credit" checked>
+                            <label for="credit-card"><i class="fa-solid fa-credit-card"></i> Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="upi" name="payment" value="upi">
+                            <label for="upi"><i class="fa-brands fa-google-pay"></i> UPI</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="cash" name="payment" value="cash">
+                            <label for="cash"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</label>
+                        </div>
+                        <button type="submit" class="btn place-order-btn" style="border: none; cursor: pointer;">Place Order</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Confirmation Message -->
+            <div class="confirmation-overlay" id="confirmation-overlay">
+                <div class="confirmation-box">
+                    <div class="checkmark-container">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    <h2>Order Placed!</h2>
+                    <p>You will get Your Order in 15 min. <br>Thank you for visiting BBQ Bites!</p>
+                    <a href="../index.html" class="btn">Done</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="copyright">
+                <p>&copy; 2024 BBQ Bites. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

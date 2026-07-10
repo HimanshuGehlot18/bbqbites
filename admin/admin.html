@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BBQ Bites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- HEADER PART -->
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="../index.html" class="Logo">BBQ Bites <span style="font-size: 1.2rem; color: var(--lead--); font-weight: normal; margin-left: 0.5rem; border-left: 2px solid var(--gold-finger); padding-left: 0.5rem;">Admin</span></a>
+            <div class="desktop-action flex gap-2">
+                <a href="../index.html" class="btn" style="background-color: var(--lead--); border: 1px solid #444;">
+                    <i class="fa-solid fa-house"></i>
+                    Back to Website
+                </a>
+                <button id="btn-logout" class="btn" style="border: none; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Log Out
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="wrapper p-top-admin">
+        <!-- Dashboard Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon orders-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Orders</h3>
+                    <h2 id="stat-total-orders">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon revenue-icon">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Revenue</h3>
+                    <h2 id="stat-total-revenue">$0.00</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon messages-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Messages</h3>
+                    <h2 id="stat-total-messages">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon subscribers-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Subscribers</h3>
+                    <h2 id="stat-total-subscribers">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Workspace -->
+        <div class="dashboard-workspace">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <button class="sidebar-tab active" data-tab="orders">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Orders</span>
+                    <span class="badge" id="badge-orders">0</span>
+                </button>
+                <button class="sidebar-tab" data-tab="messages">
+                    <i class="fa-solid fa-message"></i>
+                    <span>Inquiries</span>
+                    <span class="badge" id="badge-messages">0</span>
+                </button>
+                <button class="sidebar-tab" data-tab="subscribers">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Newsletter</span>
+                    <span class="badge" id="badge-subscribers">0</span>
+                </button>
+                
+                <hr class="sidebar-divider">
+                
+                <div class="sidebar-utilities">
+                    <h4>Admin Actions</h4>
+                    <button id="btn-load-demo" class="util-btn outline">
+                        <i class="fa-solid fa-database"></i> Load Demo Data
+                    </button>
+                    <button id="btn-clear-db" class="util-btn danger">
+                        <i class="fa-solid fa-trash-can"></i> Clear All Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-panel">
+                <!-- Orders Tab Panel -->
+                <div class="tab-panel active" id="panel-orders">
+                    <div class="panel-header">
+                        <h2>Manage Orders</h2>
+                        <div class="filter-bar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="order-search" placeholder="Search orders by Name / ID...">
+                            </div>
+                            <select id="order-status-filter">
+                                <option value="all">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Preparing">Preparing</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order No</th>
+                                    <th>Date</th>
+                                    <th>Customer Details</th>
+                                    <th>Items Ordered</th>
+                                    <th>Total</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Dynamic entries injected by JS -->
+                            </tbody>
+                        </table>
+                        <div class="empty-state" id="orders-empty-state">
+                            <i class="fa-solid fa-utensils"></i>
+                            <p>No orders found. Add items to cart and place an order, or load demo data!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Messages Tab Panel -->
+                <div class="tab-panel" id="panel-messages">
+                    <div class="panel-header">
+                        <h2>Contact Inquiries</h2>
+                        <div class="filter-bar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="messages-search" placeholder="Search messages by name or email...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Sender Details</th>
+                                    <th>Message Details</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="messages-table-body">
+                                <!-- Dynamic entries injected by JS -->
+                            </tbody>
+                        </table>
+                        <div class="empty-state" id="messages-empty-state">
+                            <i class="fa-solid fa-comments"></i>
+                            <p>No messages received. Submit queries through the Contact Us page!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscribers Tab Panel -->
+                <div class="tab-panel" id="panel-subscribers">
+                    <div class="panel-header">
+                        <h2>Newsletter Subscribers</h2>
+                        <div class="filter-bar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="subscribers-search" placeholder="Search by email address...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table small-table">
+                            <thead>
+                                <tr>
+                                    <th>Date Subscribed</th>
+                                    <th>Email Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subscribers-table-body">
+                                <!-- Dynamic entries injected by JS -->
+                            </tbody>
+                        </table>
+                        <div class="empty-state" id="subscribers-empty-state">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                            <p>No newsletter subscriptions. Sign up emails in the footer!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="admin-toast" class="notification-toast"></div>
+
+    <footer>
+        <div class="footer-container" style="margin-top: 5rem;">
+            <div class="copyright">
+                <p>&copy; 2024 BBQ Bites. All Rights Reserved. Admin Control Panel.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>
