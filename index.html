@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- HEADER PART -->
+  <header>
+    <nav class="navbar flex between wrapper">
+      <a href="#" class="Logo">BBQ Bites</a>
+
+      <!-- Desktop MENU -->
+      <ul class="navlist flex gap-3">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="#menu">Menu</a>
+        </li>
+        <li>
+          <a href="#services">Services</a>
+        </li>
+        <li>
+          <a href="about.html">About us</a>
+        </li>
+        <li>
+          <a href="contact.html">Contact us</a>
+        </li>
+      </ul>
+
+
+      <div class="desktop-action flex gap-2">
+        <a href="#" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+
+        <a href="login/login.html" class="btn">
+          Sign in
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </a>
+
+        <a href="#" class="hamburger">
+          <i class="fa-solid fa-bars "></i>
+        </a>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <ul class="mobile-menu">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="#menu">Menu</a>
+        </li>
+        <li>
+          <a href="#services">Services</a>
+        </li>
+        <li>
+          <a href="about.html">About us</a>
+        </li>
+        <li>
+          <a href="contact.html">Contact us</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SECTION PART -->
+  <main>
+    <section>
+      <div class="hero-section flex between wrapper">
+        <div class="content">
+          <h1>
+            Enjoy Your Delicious BBQ Meals
+            <span>With Family</span>
+          </h1>
+          <p class="para">We will Fill Your Tummy With Delicious <br>Food With Fast delivery</p>
+          <div class="flex">
+            <a href="#menu" class="btn">Order Now</a>
+          </div>
+        </div>
+        <div class="image-container">
+          <img src="image/delivery-boy.png" alt="hero image" />
+        </div>
+    </section>
+
+    <section id="services">
+      <div class="p-top wrapper">
+        <div class="text-center">
+          <h5>
+            Our Services
+          </h5>
+          <h2>How Does it Work?</h2>
+        </div>
+
+        <div class="flex text-center mt-4 gap-4">
+          <div class="service-card">
+            <div class="image-container">
+              <img src="image/easy-to-order.png" alt="easy-to-order" />
+            </div>
+            <h3>Easy to Order</h3>
+            <p>You Only Need A Few Steps in Ordering Food</p>
+          </div>
+
+          <div class="service-card">
+            <div class="image-container">
+              <img src="image/fast-delivery.png" alt="fast-delivery" />
+            </div>
+            <h3>fast Delivery</h3>
+            <p>Delivery That Is Alwyas Ontime And Even Faster</p>
+          </div>
+
+          <div class="service-card">
+            <div class="image-container">
+              <img src="image/best-quality.png" alt="best-quality" />
+            </div>
+            <h3>Best Quality</h3>
+            <p>Not Only fast Food For Us In Quality Is Also Number One</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="wrapper p-top">
+
+        <div class="text-center">
+          <h5>
+            Our Menu
+          </h5>
+          <h2>The Most Popular</h2>
+        </div>
+
+        <div class="card-list text-center flex mt-4 gap-4">
+          <!-- <div class="order-card">
+            <div class="card-image">
+              <img src="image/burger.png"/>
+            </div>
+            <h4>Double Burger</h4>
+            <h5 class="price">$200</h5>
+            <a href="#" class="btn card-btn">Order Now</a>
+          </div> -->
+        </div>
+
+        <!-- CART ITEMS -->
+        <div class="cart-tab">
+          <h3>Your Cart</h3>
+
+          <div class="cart-list">
+
+            <!-- <div class="item">
+              <div class="item-image">
+                <img src="image/burger.png">
+              </div>
+              <div class="item-content">
+                <h4>Double Burger</h4>
+                <h4 class="item-total">$200</h4>
+              </div class="detail">
+              <div class="fle
+              x">
+                <a href="#" class="quantity-btn minus">
+                  <i class="fa-solid fa-minus"></i>
+                </a>
+                <h4 class="quantity-value">0</h4>
+                <a href="#" class="quantity-btn plus">
+                  <i class="fa-solid fa-plus"></i>
+                </a>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="total-container">
+            <h4>Total:</h4>
+            <h4 class="cart-total">$0.00</h4>
+          </div>
+
+          <div class="btn-container flex gap-2">
+            <a href="" class="btn close-btn">Close</a>
+            <a href="checkout/checkout.html" class="btn checkout-btn">Check out</a>
+          </div>
+        </div>
+    </section>
+
+    <section>
+      <div class="wrapper p-top flex gap-3">
+        <div class="image-container">
+          <img src="image/delivery-boy-with-phone.png" alt="">
+        </div>
+
+        <div class="review-container">
+          <h5>Our Reviews</h5>
+          <h2> What they say?</h2>
+
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper mt-4">
+
+              <div class="swiper-slide">
+                <div class="flex gap-2 ">
+                  <div class="profile">
+                    <img src="image/profile1.jpeg">
+                  </div>
+                  <div>
+                    <h4>John Doe</h4>
+                    <div class="mt-half">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="para">Foodie is the best. Besides the many delicious meals,
+                  the service is also very good, especially very fast
+                  delivery. I highly recommend Foodie to you.</p>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="flex gap-2 ">
+                  <div class="profile">
+                    <img src="image/profile2.jpeg">
+                  </div>
+                  <div>
+                    <h4>Sophia Anderson</h4>
+                    <div class="mt-half">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="para">Fresh ingredients, creative menu, and warm service
+                  make this spot a hidden gem. Perfect for casual dinners
+                  or special nights out. Truly a foodie’s paradise!</p>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="flex gap-2 ">
+                  <div class="profile">
+                    <img src="image/profile3.jpeg">
+                  </div>
+                  <div>
+                    <h4>Olivia Smith</h4>
+                    <div class="mt-half">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="para">Delicious dishes, cozy ambiance, and exceptional service.
+                  A must-visit for food lovers seeking bold flavors and
+                  unforgettable dining experiences. Highly recommended,
+                  every bite delights!</p>
+              </div>
+
+
+            </div>
+            <div class="flex between">
+              <a href="" class="arrow" id="prev">
+                <i class="fa-solid fa-arrow-left"></i>
+              </a>
+              <a href="" class="arrow" id="next">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+    </section>
+
+    <section>
+      <div class="wrapper p-top">
+        <div class="app-container flex gap-3">
+          <div class="image-container">
+            <img src="image/mobile-app.png" alt="app image">
+          </div>
+          <div class="content">
+            <h5>Our Application</h5>
+            <h2>Simple Way To <br>Order Your Food</h2>
+            <p class="para">Discover food wherever and whenever <br>
+              and get your food delivery quickly.</p>
+            <a href="#" class="btn">Get The App</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrapper p-top">
+        <div class="text-center">
+          <h5>Our Subscribe</h5>
+          <h2>Subscribe To Our Newsletter</h2>
+          <p class="para m-auto">
+            We recommend you to subscribe our newspaper, drop your email below to get daily update about us.
+          </p>
+          <form id="newsletter-form" class="input-container flex">
+            <input type="email" id="subscriber-email" placeholder="Enter your email" autocomplete="off" required />
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- FOOTER PART -->
+
+  <footer>
+    <div class="footer-container">
+      <div class=" flex wrapper gap-4">
+        <div class="footer-warrper ">
+          <a href="" class="Logo">BBQbites</a>
+          <p class="mt-one-half">We will Fill Your Tummy With Delicious <br>Food With Fast delivery</p>
+
+          <div class="flex gap-2 mt-one-half">
+            <a href="#" class="social-icon">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fa-brands fa-google-plus-g"></i>
+            </a>
+          </div>
+        </div>
+
+        <ul class="footer-warrper">
+          <li>
+            <h4>Our Menu</h4>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Special</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Popular</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Category</a>
+          </li>
+        </ul>
+
+        <ul class="footer-warrper">
+          <li>
+            <h4>Company</h4>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">why BBqbites</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Partner With us</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="about.html" class="footer-link">About us</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link"> FAQ</a>
+          </li>
+        </ul>
+
+        <ul class="footer-warrper">
+          <li>
+            <h4>Support</h4>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Account</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">Support Center</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="" class="footer-link">FeedBack</a>
+          </li>
+          <li class="mt-one-half">
+            <a href="contact.html" class="footer-link">Contact</a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 BBQ Bites. All Rights Reserved.</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

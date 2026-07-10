@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - BBQ Bites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- HEADER PART -->
+    <header>
+        <nav class="navbar flex between wrapper">
+            <a href="index.html" class="Logo">BBQ Bites</a>
+
+            <!-- Desktop MENU -->
+            <ul class="navlist flex gap-3">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="index.html#services">Services</a>
+                </li>
+                <li>
+                    <a href="about.html">About us</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact us</a>
+                </li>
+            </ul>
+
+            <div class="desktop-action flex gap-2">
+                <a href="#" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
+                </a>
+
+
+                <a href="#" class="hamburger">
+                    <i class="fa-solid fa-bars "></i>
+                </a>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <ul class="mobile-menu">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="index.html#services">Services</a>
+                </li>
+                <li>
+                    <a href="about.html">About us</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact us</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <div class="wrapper p-top">
+                <div class="text-center">
+                    <h5>Get In Touch</h5>
+                    <h2>Contact Us</h2>
+                    <p class="para m-auto">
+                        Have a question, a comment, or a craving? We'd love to hear from you. Reach out to us through
+                        any of the methods below, and we'll get back to you as soon as we can.
+                    </p>
+                </div>
+
+                <div class="contact-container flex mt-4 gap-4">
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contact-form" action="#" class="mt-one-half">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" placeholder="Full Name" required maxlength="20">
+                                <input type="email" id="contact-email" placeholder="Your Email" required maxlength="30">
+                            </div>
+                            <input type="tel" id="contact-phone" placeholder="Your Phone" required maxlength="10">
+                            <textarea id="contact-message" placeholder="Your Message" rows="8" required></textarea>
+                            <button type="submit" class="btn" style="border: none; cursor: pointer;">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Our Details</h3>
+                        <p class="para">
+                            Feel free to call us for any inquiries or to place an order. For a personal touch, you can
+                            reach out directly to me, the owner.
+                        </p>
+                        <div class="contact-item">
+                            <h4><i class="fa-solid fa-user"></i> Owner:</h4>
+                            <p>John Doe</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4><i class="fa-solid fa-phone"></i> Restaurant Phone:</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4><i class="fa-solid fa-envelope"></i> General Inquiries:</h4>
+                            <p>contact@bbqbites.com</p>
+                        </div>
+                        <div class="flex gap-2 mt-one-half">
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fa-brands fa-google-plus-g"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER PART -->
+    <footer>
+        <div class="footer-container">
+            <div class="copyright">
+                <p>&copy; 2024 BBQ Bites. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART ITEMS -->
+    <div class="cart-tab">
+        <h3>Your Cart</h3>
+
+        <div class="cart-list">
+
+        </div>
+
+        <div class="total-container">
+            <h4>Total:</h4>
+            <h4 class="cart-total">$0.00</h4>
+        </div>
+
+        <div class="btn-container flex gap-2">
+            <a href="" class="btn close-btn">Close</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
