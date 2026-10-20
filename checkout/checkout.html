@@ -45,20 +45,105 @@
                         </div>
 
                         <h2>Payment Method</h2>
-                        <div class="payment-option">
-                            <input type="radio" id="credit-card" name="payment" value="credit" checked>
-                            <label for="credit-card"><i class="fa-solid fa-credit-card"></i> Credit/Debit Card</label>
+                        <div class="payment-option payment-option-disabled" id="credit-card-option">
+                            <input type="radio" id="credit-card" name="payment" value="credit" disabled>
+                            <label for="credit-card">
+                                <i class="fa-solid fa-credit-card"></i> Credit/Debit Card
+                                <span class="badge-unavailable"><i class="fa-solid fa-ban"></i> Not Available</span>
+                            </label>
                         </div>
-                        <div class="payment-option">
-                            <input type="radio" id="upi" name="payment" value="upi">
-                            <label for="upi"><i class="fa-brands fa-google-pay"></i> UPI</label>
+                        <div class="card-unavailable-banner" id="card-unavailable-banner" role="alert">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span>Credit/Debit Card payment is currently not available. Please pay via <strong>UPI</strong> or <strong>Cash on Delivery</strong>.</span>
                         </div>
-                        <div class="payment-option">
+
+                        <div class="payment-option selected" id="upi-option">
+                            <input type="radio" id="upi" name="payment" value="upi" checked>
+                            <label for="upi">
+                                <i class="fa-brands fa-google-pay"></i> UPI (Scan & Pay)
+                                <span class="badge-recommended"><i class="fa-solid fa-bolt"></i> Instant</span>
+                            </label>
+                        </div>
+
+                        <!-- Inline UPI Showcase -->
+                        <div class="upi-inline-showcase" id="upi-inline-showcase">
+                            <div class="upi-showcase-card">
+                                <div class="upi-card-top">
+                                    <div class="upi-user-info">
+                                        <div class="upi-user-avatar">H</div>
+                                        <div class="upi-user-details">
+                                            <span class="upi-user-name">Himanshu Gehlot</span>
+                                            <span class="upi-verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Merchant</span>
+                                        </div>
+                                    </div>
+                                    <div class="upi-brands">
+                                        <i class="fa-brands fa-google-pay" title="Google Pay"></i>
+                                        <i class="fa-solid fa-qrcode" title="Scan QR"></i>
+                                    </div>
+                                </div>
+                                <div class="upi-qr-image-wrapper">
+                                    <img src="../image/upi_qr.png" alt="Scan UPI QR Code to Pay Himanshu Gehlot" class="upi-qr-img" />
+                                </div>
+                                <div class="upi-id-pill">
+                                    <span class="upi-id-label">UPI ID:</span>
+                                    <code class="upi-id-code" id="upi-id-val">himanshugehlot521@okicici</code>
+                                    <button type="button" class="btn-copy-upi" id="copy-upi-btn" title="Copy UPI ID" aria-label="Copy UPI ID">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <p class="upi-scan-footer"><i class="fa-solid fa-shield-halved"></i> Scan with any UPI app (GPay, PhonePe, Paytm, etc.)</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-option" id="cash-option">
                             <input type="radio" id="cash" name="payment" value="cash">
                             <label for="cash"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</label>
                         </div>
                         <button type="submit" class="btn place-order-btn" style="border: none; cursor: pointer;">Place Order</button>
                     </form>
+                </div>
+            </div>
+
+            <!-- UPI Payment Verification Modal with 10s Timer -->
+            <div class="upi-modal-overlay" id="upi-modal-overlay" aria-hidden="true" role="dialog">
+                <div class="upi-modal-card">
+                    <div class="upi-modal-header">
+                        <div class="upi-modal-title-row">
+                            <i class="fa-brands fa-google-pay upi-modal-icon"></i>
+                            <h3>Pay via UPI</h3>
+                        </div>
+                        <p class="upi-modal-subtitle">Scan QR to pay <span class="upi-modal-payable" id="upi-modal-payable">$0.00</span></p>
+                    </div>
+
+                    <div class="upi-modal-body">
+                        <div class="upi-modal-qr-frame">
+                            <img src="../image/upi_qr.png" alt="UPI QR Code - Himanshu Gehlot" class="upi-modal-qr-img" />
+                        </div>
+                        <div class="upi-modal-id-row">
+                            <span>UPI ID: <strong>himanshugehlot521@okicici</strong></span>
+                        </div>
+                        <div class="upi-countdown-container">
+                            <div class="upi-timer-circle">
+                                <span id="upi-timer-number">10</span>
+                            </div>
+                            <div class="upi-timer-text-wrap">
+                                <p class="upi-timer-label">Confirming order in <span id="upi-timer-seconds">10</span>s...</p>
+                                <p class="upi-timer-sub">Please complete scan on your UPI app</p>
+                            </div>
+                        </div>
+                        <div class="upi-progress-track">
+                            <div class="upi-progress-bar" id="upi-progress-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="upi-modal-footer">
+                        <button type="button" id="upi-done-early-btn" class="btn btn-upi-confirm">
+                            <i class="fa-solid fa-check"></i> I Have Paid • Confirm Now
+                        </button>
+                        <button type="button" id="upi-cancel-modal-btn" class="btn btn-cancel-upi">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -73,6 +158,10 @@
                     </div>
                     <h2>Order Placed!</h2>
                     <p>You will get Your Order in 15 min. <br>Thank you for visiting BBQ Bites!</p>
+                    <div class="confirm-auto-close-box">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>This message will close in <strong id="confirm-countdown-num">10</strong> seconds...</span>
+                    </div>
                     <a href="../index.html" class="btn">Done</a>
                 </div>
             </div>

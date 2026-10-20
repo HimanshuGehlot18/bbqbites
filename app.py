@@ -114,7 +114,11 @@ def admin_login():
         username = data.get('username')
         password = data.get('password')
 
-        if username == 'admin' and password == 'password123':
+        # Load admin credentials from environment variables (or use defaults)
+        admin_user = os.environ.get('ADMIN_USERNAME', 'admin')
+        admin_pass = os.environ.get('ADMIN_PASSWORD', 'password123')
+
+        if username == admin_user and password == admin_pass:
             session['admin_logged_in'] = True
             return jsonify({'success': True})
         else:
