@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const subscribersSearch = document.getElementById('subscribers-search');
 
     // Utility Buttons
-    const btnLoadDemo = document.getElementById('btn-load-demo');
     const btnClearDb = document.getElementById('btn-clear-db');
     const btnLogout = document.getElementById('btn-logout');
 
@@ -417,27 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
     subscribersSearch.addEventListener('input', renderSubscribers);
 
     // --- DB Utilities ---
-
-    btnLoadDemo.addEventListener('click', () => {
-        fetch('/api/admin/populate-demo', {
-            method: 'POST'
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                showToast('Demo data generated successfully!');
-                reloadAllData();
-            } else {
-                showToast('Failed to generate demo data.', true);
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            showToast('Server connection failed.', true);
-        });
-    });
-
-    btnClearDb.addEventListener('click', () => {
+    if (btnClearDb) {
+        btnClearDb.addEventListener('click', () => {
         if (confirm('CAUTION: Are you sure you want to delete all database content? This will wipe all orders, messages, and subscribers.')) {
             fetch('/api/admin/clear-data', {
                 method: 'POST'
