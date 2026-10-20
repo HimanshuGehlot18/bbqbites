@@ -463,3 +463,62 @@ input {
         margin: 0 3px; /* Reduce spacing between icons */
     }
 }
+
+/* Feedback Alerts */
+.login-alert {
+    width: 100%;
+    max-width: 320px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    animation: fadeIn 0.3s ease;
+}
+
+.login-alert.error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.login-alert.success {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Back to Home Link */
+.home-link {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.home-link a {
+    color: var(--lead--);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+}
+
+.home-link a:hover {
+    color: var(--lead--);
+    background: var(--hint-yellow);
+    transform: translateX(-3px);
+}

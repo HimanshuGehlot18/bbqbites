@@ -10,45 +10,65 @@
 <body>
 
     <div class="container" id="container">
+        <!-- Sign Up Container -->
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form id="sign-up-form">
                 <h1>Create Account</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-instagram"></i></a>
-					<a href="#" class="social"><i class="fab fa-x-twitter"></i></a>
-					<a href="#" class="social"><i class="fab fa-google"></i></a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="social" title="Google"><i class="fab fa-google"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button>Sign Up</button>
+                <div id="signup-alert" class="login-alert" style="display: none;"></div>
+                <input type="text" id="signup-name" placeholder="Full Name" required autocomplete="name" />
+                <input type="email" id="signup-email" placeholder="Email Address" required autocomplete="email" />
+                <input type="password" id="signup-password" placeholder="Password (min 6 chars)" required minlength="6" autocomplete="new-password" />
+                <button type="submit" id="signup-submit-btn">Sign Up</button>
             </form>
         </div>
+
+        <!-- Sign In Container -->
         <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Sign in</h1>
+            <form id="sign-in-form">
+                <h1>Sign In</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-instagram"></i></a>
-					<a href="#" class="social"><i class="fab fa-x-twitter"></i></a>
-					<a href="#" class="social"><i class="fab fa-google"></i></a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="social" title="Google"><i class="fab fa-google"></i></a>
                 </div>
                 <span>or use your account</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+
+                <div id="login-error-banner" class="login-alert error" style="display: none;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="login-error-text">Invalid username or password</span>
+                </div>
+                <div id="login-success-banner" class="login-alert success" style="display: none;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span id="login-success-text">Logging in...</span>
+                </div>
+
+                <input type="text" id="signin-username" placeholder="Username or Email (e.g. admin)" required autocomplete="username" />
+                <input type="password" id="signin-password" placeholder="Password" required autocomplete="current-password" />
+                <a href="#" id="forgot-password-link">Forgot your password?</a>
+                <button type="submit" id="signin-submit-btn">
+                    <span id="signin-btn-text">Sign In</span>
+                    <i class="fa-solid fa-spinner fa-spin" id="signin-spinner" style="display: none; margin-left: 6px;"></i>
+                </button>
             </form>
         </div>
+
         <div class="overlay-container">
-            <!-- Overlay content will be dynamically added here by login.js -->
+            <!-- Overlay content dynamically created in login.js -->
         </div>
     </div>
+
     <div class="home-link">
-        <a href="../index.html">Back to BBQ Bites</a>
+        <a href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to BBQ Bites</a>
     </div>
+
     <script src="login.js"></script>
 </body>
 </html>

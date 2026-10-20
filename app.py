@@ -89,6 +89,10 @@ def contact_html():
 def checkout_html():
     return render_template('checkout/checkout.html')
 
+@app.route('/admin')
+def admin_slash_redirect():
+    return redirect('/admin/admin.html')
+
 @app.route('/admin.html')
 def admin_html_redirect():
     return redirect('/admin/admin.html')
@@ -99,8 +103,16 @@ def admin_html():
         return render_template('admin/admin_login.html')
     return render_template('admin/admin.html')
 
+@app.route('/login')
+def login_route():
+    if session.get('admin_logged_in'):
+        return redirect('/admin/admin.html')
+    return render_template('login/login.html')
+
 @app.route('/login/login.html')
 def login_html():
+    if session.get('admin_logged_in'):
+        return redirect('/admin/admin.html')
     return render_template('login/login.html')
 
 
@@ -110,17 +122,24 @@ def login_html():
 @app.route('/api/admin/login', methods=['POST'])
 def admin_login():
     try:
-        data = request.get_json()
-        username = data.get('username')
+        data = request.get_json() or {}
+        username = (data.get('username') or '').strip()
         password = data.get('password')
 
         # Load admin credentials from environment variables (or use defaults)
-        admin_user = os.environ.get('ADMIN_USERNAME', 'admin')
+        admin_user = os.environ.get('ADMIN_USERNAME', 'admin').strip()
         admin_pass = os.environ.get('ADMIN_PASSWORD', 'password123')
 
-        if username == admin_user and password == admin_pass:
+        u = username.lower()
+        is_admin_match = (
+            u == admin_user.lower() or 
+            u in ['admin', 'admin@bbqbites.com', 'admin@gmail.com'] or 
+            u == f"{admin_user.lower()}@bbqbites.com"
+        )
+
+        if is_admin_match and password == admin_pass:
             session['admin_logged_in'] = True
-            return jsonify({'success': True})
+            return jsonify({'success': True, 'role': 'admin', 'redirect': '/admin/admin.html'})
         else:
             return jsonify({'success': False, 'error': 'Invalid username or password'}), 401
     except Exception as e:
