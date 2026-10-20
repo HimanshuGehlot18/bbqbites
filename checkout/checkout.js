@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // UPI Modal elements
     const upiModalOverlay = document.getElementById('upi-modal-overlay');
     const upiModalPayable = document.getElementById('upi-modal-payable');
-    const upiCancelModalBtn = document.getElementById('upi-cancel-modal-btn');
 
     let upiTimeoutId = null;
     let cardAlertTimeout = null;
@@ -234,18 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
             sendOrderToBackend(customerData);
         };
 
-        // QR code displays for 10 seconds, then automatically closes and shows confirmation!
+        // QR code displays for 5 seconds, then automatically closes and shows confirmation!
         upiTimeoutId = setTimeout(() => {
             triggerConfirmation();
-        }, 10000);
-
-        // Close button: user finishes scanning and closes QR code -> directly triggers confirmation!
-        if (upiCancelModalBtn) {
-            upiCancelModalBtn.onclick = (e) => {
-                if (e) e.preventDefault();
-                triggerConfirmation();
-            };
-        }
+        }, 5000);
 
         // Clicking overlay backdrop also completes and confirms
         upiModalOverlay.onclick = (e) => {
