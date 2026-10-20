@@ -101,48 +101,6 @@
                         </div>
                         <button type="submit" class="btn place-order-btn" style="border: none; cursor: pointer;">Place Order</button>
                     </form>
-                </div>
-            </div>
-
-            <!-- UPI Payment Verification Modal with 10s Timer -->
-            <div class="upi-modal-overlay" id="upi-modal-overlay" aria-hidden="true" role="dialog">
-                <div class="upi-modal-card">
-                    <div class="upi-modal-header">
-                        <div class="upi-modal-title-row">
-                            <i class="fa-brands fa-google-pay upi-modal-icon"></i>
-                            <h3>Pay via UPI</h3>
-                        </div>
-                        <p class="upi-modal-subtitle">Scan QR to pay <span class="upi-modal-payable" id="upi-modal-payable">$0.00</span></p>
-                    </div>
-
-                    <div class="upi-modal-body">
-                        <div class="upi-modal-qr-frame">
-                            <img src="../image/upi_qr.png" alt="UPI QR Code - Himanshu Gehlot" class="upi-modal-qr-img" />
-                        </div>
-                        <div class="upi-modal-id-row">
-                            <span>UPI ID: <strong>himanshugehlot521@okicici</strong></span>
-                        </div>
-                    <div class="upi-modal-footer">
-                        <button type="button" id="upi-cancel-modal-btn" class="btn btn-cancel-upi">
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Confirmation Message -->
-            <div class="confirmation-overlay" id="confirmation-overlay">
-                <div class="confirmation-box">
-                    <div class="checkmark-container">
-                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                        </svg>
-                    </div>
-                    <h2>Order Placed!</h2>
-                    <p>You will get Your Order in 15 min. <br>Thank you for visiting BBQ Bites!</p>
-                    <a href="../index.html" class="btn">Done</a>
-                </div>
             </div>
         </div>
     </main>
@@ -154,6 +112,49 @@
             </div>
         </div>
     </footer>
+
+    <!-- UPI Payment Verification Modal -->
+    <div class="upi-modal-overlay" id="upi-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="upi-modal-card">
+            <div class="upi-modal-header">
+                <div class="upi-modal-title-row">
+                    <i class="fa-brands fa-google-pay upi-modal-icon"></i>
+                    <h3>Pay via UPI</h3>
+                </div>
+                <p class="upi-modal-subtitle">Scan QR to pay <span class="upi-modal-payable" id="upi-modal-payable">$0.00</span></p>
+            </div>
+
+            <div class="upi-modal-body">
+                <div class="upi-modal-qr-frame">
+                    <img src="../image/upi_qr.png" alt="UPI QR Code - Himanshu Gehlot" class="upi-modal-qr-img" />
+                </div>
+                <div class="upi-modal-id-row">
+                    <span>UPI ID: <strong>himanshugehlot521@okicici</strong></span>
+                </div>
+            </div>
+
+            <div class="upi-modal-footer">
+                <button type="button" id="upi-cancel-modal-btn" class="btn btn-cancel-upi">
+                    <i class="fa-solid fa-xmark"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div class="confirmation-overlay" id="confirmation-overlay">
+        <div class="confirmation-box">
+            <div class="checkmark-container">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h2>Order Placed!</h2>
+            <p>You will get Your Order in 15 min. <br>Thank you for visiting BBQ Bites!</p>
+            <a href="../index.html" class="btn">Done</a>
+        </div>
+    </div>
 
     <script src="checkout.js"></script>
 </body>
