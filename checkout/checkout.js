@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPriceEl = document.querySelector('.total-price');
     const paymentForm = document.getElementById('payment-form');
     const confirmationOverlay = document.getElementById('confirmation-overlay');
-    const confirmCountdownNum = document.getElementById('confirm-countdown-num');
 
     // UPI & Card elements
     const creditCardOption = document.getElementById('credit-card-option');
@@ -19,14 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // UPI Modal elements
     const upiModalOverlay = document.getElementById('upi-modal-overlay');
     const upiModalPayable = document.getElementById('upi-modal-payable');
-    const upiTimerNumber = document.getElementById('upi-timer-number');
-    const upiTimerSeconds = document.getElementById('upi-timer-seconds');
-    const upiProgressBar = document.getElementById('upi-progress-bar');
-    const upiDoneEarlyBtn = document.getElementById('upi-done-early-btn');
     const upiCancelModalBtn = document.getElementById('upi-cancel-modal-btn');
 
-    let upiCountdownInterval = null;
-    let confirmationRedirectInterval = null;
+    let upiTimeoutId = null;
     let cardAlertTimeout = null;
 
     // 1. Load cart from localStorage
@@ -195,42 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Show Confirmation Screen with 10s Auto-Disappear & Redirect ---
+    // --- Show Confirmation Screen ---
     const showOrderConfirmationScreen = () => {
         // Clear the cart from localStorage
         localStorage.removeItem('cart');
 
         if (confirmationOverlay) {
             confirmationOverlay.classList.add('visible');
-
-            // 10-second countdown for auto-closing/redirecting to home
-            let countdown = 10;
-            if (confirmCountdownNum) {
-                confirmCountdownNum.textContent = countdown;
-            }
-
-            if (confirmationRedirectInterval) clearInterval(confirmationRedirectInterval);
-
-            confirmationRedirectInterval = setInterval(() => {
-                countdown--;
-                if (confirmCountdownNum) {
-                    confirmCountdownNum.textContent = countdown;
-                }
-
-                if (countdown <= 0) {
-                    clearInterval(confirmationRedirectInterval);
-                    confirmationOverlay.classList.remove('visible');
-                    // Redirect to home page
-                    window.location.href = '../index.html';
-                }
-            }, 1000);
         }
     };
 
-    // --- UPI 10-Second Payment Modal Flow ---
+    // --- UPI 10-Second QR Display Flow ---
     const startUpiPaymentFlow = (customerData) => {
         if (!upiModalOverlay) {
-            // Fallback if modal element missing
             sendOrderToBackend(customerData);
             return;
         }
@@ -244,45 +215,18 @@ document.addEventListener('DOMContentLoaded', () => {
         upiModalOverlay.classList.add('visible');
         upiModalOverlay.setAttribute('aria-hidden', 'false');
 
-        // Reset countdown display
-        let secondsLeft = 10;
-        if (upiTimerNumber) upiTimerNumber.textContent = secondsLeft;
-        if (upiTimerSeconds) upiTimerSeconds.textContent = secondsLeft;
-        if (upiProgressBar) upiProgressBar.style.width = '100%';
+        if (upiTimeoutId) clearTimeout(upiTimeoutId);
 
-        if (upiCountdownInterval) clearInterval(upiCountdownInterval);
-
-        // Tick down every second (10s total)
-        upiCountdownInterval = setInterval(() => {
-            secondsLeft--;
-            if (upiTimerNumber) upiTimerNumber.textContent = Math.max(0, secondsLeft);
-            if (upiTimerSeconds) upiTimerSeconds.textContent = Math.max(0, secondsLeft);
-            if (upiProgressBar) {
-                const percent = Math.max(0, (secondsLeft / 10) * 100);
-                upiProgressBar.style.width = percent + '%';
-            }
-
-            // After 10s: Disappear QR modal and trigger order confirmation!
-            if (secondsLeft <= 0) {
-                clearInterval(upiCountdownInterval);
-                closeUpiModal();
-                sendOrderToBackend(customerData);
-            }
-        }, 1000);
-
-        // Early confirm button
-        if (upiDoneEarlyBtn) {
-            upiDoneEarlyBtn.onclick = () => {
-                clearInterval(upiCountdownInterval);
-                closeUpiModal();
-                sendOrderToBackend(customerData);
-            };
-        }
+        // QR code displays for 10 seconds, then automatically disappears and confirms the order!
+        upiTimeoutId = setTimeout(() => {
+            closeUpiModal();
+            sendOrderToBackend(customerData);
+        }, 10000);
 
         // Cancel button
         if (upiCancelModalBtn) {
             upiCancelModalBtn.onclick = () => {
-                clearInterval(upiCountdownInterval);
+                if (upiTimeoutId) clearTimeout(upiTimeoutId);
                 closeUpiModal();
             };
         }
